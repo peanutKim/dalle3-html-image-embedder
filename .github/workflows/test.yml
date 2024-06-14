@@ -1,0 +1,31 @@
+name: Test
+on:
+  # schedule:
+  #   - cron: '0 0 * * 5'
+  push:
+    branches:
+      - 'develop'
+    paths:
+      - '.github/workflows/**.yml'
+
+jobs:
+  update_data:
+    runs-on: ubuntu-latest
+    env:
+      MAIN_DIRECTORY: "/home/runner/work/otaku-osasis/otaku-osasis"
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+        with:
+          repository: peanutkim/imgGen
+          ref: 'develop'
+        
+      
+      - name: Parse HTML
+        run: |
+          pwd
+        #   git config user.email "hammsowon@gmail.com"
+        #   git config user.name "Irosora"
+        #   git add .
+        #   git commit -m "Update data.json"
+        #   git push
