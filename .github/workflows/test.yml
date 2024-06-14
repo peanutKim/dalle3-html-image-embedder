@@ -4,7 +4,7 @@ on:
   #   - cron: '0 0 * * 5'
   push:
     branches:
-      - 'develop'
+      - 'main'
     paths:
       - '.github/workflows/**.yml'
 
@@ -24,8 +24,9 @@ jobs:
       - name: Parse HTML
         run: |
           pwd
-        #   git config user.email "hammsowon@gmail.com"
-        #   git config user.name "Irosora"
-        #   git add .
-        #   git commit -m "Update data.json"
-        #   git push
+          python -u ${{ env.MAIN_DIRECTORY }}/test.py
+          git config user.email "hammsowon@gmail.com"
+          git config user.name "Irosora"
+          git add .
+          git commit -m "Update the HTML file"
+          git push
