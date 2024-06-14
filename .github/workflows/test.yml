@@ -26,6 +26,7 @@ jobs:
       - name: Parse HTML
         run: |
           pwd
+          echo List of items: $(ls -a)
           python -u ${{ env.MAIN_DIRECTORY }}/test.py
           git config user.email "hammsowon@gmail.com"
           git config user.name "Irosora"
