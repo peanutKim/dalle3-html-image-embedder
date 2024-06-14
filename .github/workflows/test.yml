@@ -12,7 +12,7 @@ jobs:
   update_data:
     runs-on: ubuntu-latest
     env:
-      MAIN_DIRECTORY: "/home/runner/work/otaku-osasis/otaku-osasis"
+      MAIN_DIRECTORY: "/home/runner/work/imgGen/imgGen"
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
