@@ -66,14 +66,14 @@ def generateImages(prompts: list):
     Parameters:
     - prompts (list): A list of strings, where each string is a prompt to generate an image from.
     """
-    for prompt in enumerate(prompts):
+    for _, prompt in enumerate(prompts):
         # Use a sanitized and shortened version of the prompt for the filename
         filename = f"{sanitize_filename(prompt)}.png"
         generateImage(prompt, filename)
 
-#if __name__ == "__main__":
-#    prompts = [
-#         "a cute cat with a hat",
-#         "cute anime girl with a sword",
-#    ]
-#    generateImages(prompts)
+if __name__ == "__main__":
+   prompts = [
+        "a cute cat with a hat",
+        "cute anime girl with a sword",
+   ]
+   generateImages(prompts)
