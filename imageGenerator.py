@@ -1,8 +1,31 @@
 import os
 import requests
 from apiAuth import authGPT
+import re
 
 client = authGPT()
+
+
+def sanitize_filename(prompt: str, max_length: int = 50) -> str:
+    """
+    Sanitizes and shortens the prompt to be used as a filename.
+
+    Parameters:
+    - prompt (str): The prompt to sanitize.
+    - max_length (int): Maximum length of the filename.
+
+    Returns:
+    - (str): A sanitized and shortened version of the prompt suitable for use as a filename.
+    """
+    # Remove or replace characters not allowed in filenames
+    sanitized = re.sub(r'[<>:"/\\|?*]', '', prompt)
+    # Replace spaces with underscores
+    sanitized = sanitized.replace(' ', '_')
+    # Shorten to the maximum length
+    if len(sanitized) > max_length:
+        sanitized = sanitized[:max_length]
+    return sanitized
+
 
 def generateImage(prompt: str, image_name: str):
     """
@@ -38,20 +61,19 @@ def generateImage(prompt: str, image_name: str):
 
 def generateImages(prompts: list):
     """
-    Generates and saves images for a list of prompts.
+    Generates and saves images for a list of prompts with descriptive filenames.
 
     Parameters:
     - prompts (list): A list of strings, where each string is a prompt to generate an image from.
-
-    Each image is saved with a filename corresponding to its index in the prompts list, ensuring
-    unique filenames for each generated image.
     """
     for i, prompt in enumerate(prompts):
-        generateImage(prompt, f"{i}.png")
+        # Use a sanitized and shortened version of the prompt for the filename
+        filename = f"{sanitize_filename(prompt)}.png"
+        generateImage(prompt, filename)
 
-# if __name__ == "__main__":
-#     prompts = [
-#          "a cute cat with a hat",
-#          "cute anime girl with a sword",
-#     ]
-#     generateImages(prompts)
+if __name__ == "__main__":
+    prompts = [
+         "a cute cat with a hat",
+         "cute anime girl with a sword",
+    ]
+    generateImages(prompts)
