@@ -17,7 +17,8 @@ class TextToImage:
         '''
         Returns a string of the desired input
         '''
-        return comment.split(':')[-1]
+
+        return comment.split(':')[-1].strip(' ')
 
     def read_and_replace(self):
         '''
@@ -38,7 +39,7 @@ class TextToImage:
             imageGenerator.generateImage(image_desc, "{}.{}".format(image_desc, 'png'))
 
             # Define the HTML code to replace comments
-            replacement_html = '<img src="images/"' + image_desc + 'alt="Random Image"> \n'
+            replacement_html = '<img src="images/{}.{}" alt="Random Image"> \n'.format(image_desc, 'png')
 
             # Convert the replacement HTML string to a BeautifulSoup object
             replacement_soup = BeautifulSoup(replacement_html, 'html.parser')
@@ -51,5 +52,9 @@ class TextToImage:
             file.write(str(soup))
 
 if __name__ == "__main__":
-    image = TextToImage('htmls/mock.html')
-    image.read_and_replace()
+    # image = TextToImage('htmls/mock.html')
+    # image.read_and_replace()
+    # varr = "Hello.png"
+    # print('<img src="images/{}" alt="Random Image"> \n'.format(varr))
+    # print(' image: very sour lemon '.split(':')[-1])
+    # print(' image: very sour lemon '.split(':')[-1].strip(' '))

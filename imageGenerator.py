@@ -18,7 +18,7 @@ def generateImage(prompt: str, image_name: str):
     response = client.images.generate(
         model="dall-e-3",
         prompt=prompt,
-        size="1024×1024",
+        size="1024x1024",
         quality="standard",
         n=1,
     )
@@ -51,6 +51,7 @@ def generateImages(prompts: list):
 
 # if __name__ == "__main__":
 #     prompts = [
-#         "a cute cat with a hat",
-#         "cute anime girl with a sword"]
+#          "a cute cat with a hat",
+#          "cute anime girl with a sword",
+#     ]
 #     generateImages(prompts)
