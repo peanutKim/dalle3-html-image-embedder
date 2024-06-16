@@ -52,8 +52,8 @@ class TextToImage:
             file.write(str(soup))
 
 if __name__ == "__main__":
-    # image = TextToImage('htmls/mock.html')
-    # image.read_and_replace()
+    image = TextToImage('htmls/mock.html')
+    image.read_and_replace()
     # varr = "Hello.png"
     # print('<img src="images/{}" alt="Random Image"> \n'.format(varr))
     # print(' image: very sour lemon '.split(':')[-1])

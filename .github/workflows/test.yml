@@ -22,12 +22,14 @@ jobs:
         
       - name: Download packages
         run: |
-          pip install beautifulsoup4
+          # pip install beautifulsoup4
+          pip install openai
+          pip install python-dotenv
       - name: Parse HTML
         run: |
           pwd
           echo List of items: $(ls -a)
-          python -u ${{ env.MAIN_DIRECTORY }}/test.py
+          python -u ${{ env.MAIN_DIRECTORY }}/TextToImage.py
           git config user.email "hammsowon@gmail.com"
           git config user.name "Irosora"
           git add .
