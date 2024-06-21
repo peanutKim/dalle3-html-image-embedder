@@ -73,10 +73,3 @@ def generateImages(prompts: list):
         # Use a sanitized and shortened version of the prompt for the filename
         filename = sanitizePrompt(prompt)
         generateImage(prompt, filename)
-
-#if __name__ == "__main__":
-#   prompts = [
-#        "a cute cat with a hat",
-#        "cute anime girl with a sword",
-#   ]
-#   generateImages(prompts)
