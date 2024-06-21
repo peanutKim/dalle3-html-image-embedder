@@ -6,24 +6,26 @@ import re
 client = authGPT()
 
 
-def sanitize_filename(prompt: str, max_length: int = 50) -> str:
+def sanitizePrompt(prompt: str, max_length: int = 50) -> str:
     """
-    Sanitizes and shortens the prompt to be used as a filename.
+    Sanitizes and shortens the prompt to be used as a filename, appending '.png' to the result.
 
     Parameters:
     - prompt (str): The prompt to sanitize.
-    - max_length (int): Maximum length of the filename.
+    - max_length (int): Maximum length of the filename before adding the extension.
 
     Returns:
-    - (str): A sanitized and shortened version of the prompt suitable for use as a filename.
+    - (str): A sanitized and shortened version of the prompt suitable for use as a filename, with '.png' appended.
     """
     # Remove or replace characters not allowed in filenames
     sanitized = re.sub(r'[<>:"/\\|?*]', '', prompt)
     # Replace spaces with underscores
     sanitized = sanitized.replace(' ', '_')
     # Shorten to the maximum length
-    if len(sanitized) > max_length:
-        sanitized = sanitized[:max_length]
+    if len(sanitized) > max_length - 4:  # Adjusting for the length of '.png'
+        sanitized = sanitized[:max_length - 4]
+    # Append '.png' extension
+    sanitized += '.png'
     return sanitized
 
 
@@ -69,7 +71,7 @@ def generateImages(prompts: list):
     """
     for _, prompt in enumerate(prompts):
         # Use a sanitized and shortened version of the prompt for the filename
-        filename = f"{sanitize_filename(prompt)}.png"
+        filename = sanitizePrompt(prompt)
         generateImage(prompt, filename)
 
 #if __name__ == "__main__":
