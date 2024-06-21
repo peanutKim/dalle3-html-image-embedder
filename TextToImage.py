@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup, Comment
-import imageGenerator, apiAuth
+import imageGenerator
 
 
 class TextToImage:
@@ -34,12 +34,14 @@ class TextToImage:
         # Replace all comments with the appropriate replacement_html
         for comment in comments:
             image_desc = self.parseComment(comment)
+            sanitized_desc = imageGenerator.sanitizePrompt(image_desc)
+            
 
             # Generate the image and wait until it finishes
-            imageGenerator.generateImage(image_desc, "{}.{}".format(image_desc, 'png'))
+            imageGenerator.generateImage(image_desc, sanitized_desc)
 
             # Define the HTML code to replace comments
-            replacement_html = '<img src="images/{}.{}" alt="Random Image"> \n'.format(image_desc, 'png')
+            replacement_html = f'<img src="images/{sanitized_desc}" alt="Random Image"> \n'
 
             # Convert the replacement HTML string to a BeautifulSoup object
             replacement_soup = BeautifulSoup(replacement_html, 'html.parser')
@@ -52,9 +54,5 @@ class TextToImage:
             file.write(str(soup))
 
 if __name__ == "__main__":
-    image = TextToImage('htmls/mock.html')
+    image = TextToImage('mock.html')
     image.read_and_replace()
-    # varr = "Hello.png"
-    # print('<img src="images/{}" alt="Random Image"> \n'.format(varr))
-    # print(' image: very sour lemon '.split(':')[-1])
-    # print(' image: very sour lemon '.split(':')[-1].strip(' '))
