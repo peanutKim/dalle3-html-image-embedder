@@ -1,26 +1,47 @@
 from bs4 import BeautifulSoup, Comment
 import imageGenerator
 
-
 class TextToImage:
-    '''
-    '''
+    """
+    A class to read an HTML file, identify comments prefixed with 'image:', generate images based on these comments,
+    and replace the comments with HTML image tags pointing to the generated images.
+    """
+
     def __init__(self, file_path: str):
-        '''
-        '''
+        """
+        Initializes the TextToImage object with a file path.
+
+        Parameters:
+        - file_path (str): The path to the HTML file to be processed.
+        """
         self.file_path = file_path
     
     def getFilePath(self):
+        """
+        Returns the file path associated with this TextToImage instance.
+
+        Returns:
+        - str: The file path.
+        """
         return self.file_path
     
     def parseComment(self, comment: str):
-        '''
-        Returns a string of the desired input
-        '''
+        """
+        Extracts the descriptive part of a comment following the 'image:' prefix.
 
+        Parameters:
+        - comment (str): The comment string to be parsed.
+
+        Returns:
+        - str: The descriptive part of the comment.
+        """
         return comment.split(':')[-1].strip(' ')
 
     def read_and_replace(self):
+        """
+        Reads the HTML file, identifies comments prefixed with 'image:', generates images based on these comments,
+        replaces the comments with HTML image tags, and saves the modified HTML back to the file.
+        """
         with open(self.getFilePath(), 'r', encoding='utf-8') as file:
             html_content = file.read()
         
@@ -56,5 +77,8 @@ class TextToImage:
             file.write(str(soup))
 
 if __name__ == "__main__":
+    """
+    Main execution point of the script. Creates a TextToImage instance for a mock HTML file and processes it.
+    """
     image = TextToImage('mock.html')
     image.read_and_replace()
