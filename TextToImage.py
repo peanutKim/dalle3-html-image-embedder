@@ -75,10 +75,3 @@ class TextToImage:
         # Save the modified HTML back to the file
         with open(self.getFilePath(), 'w', encoding='utf-8') as file:
             file.write(str(soup))
-
-#if __name__ == "__main__":
-#    """
-#    Main execution point of the script. Creates a TextToImage instance for a mock HTML file and processes it.
-#    """
-#    image = TextToImage('mock.html')
-#    image.read_and_replace()
