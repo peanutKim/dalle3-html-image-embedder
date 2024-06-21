@@ -69,7 +69,7 @@ def generateImages(prompts: list):
     Parameters:
     - prompts (list): A list of strings, where each string is a prompt to generate an image from.
     """
-    for _, prompt in enumerate(prompts):
+    for prompt in enumerate(prompts):
         # Use a sanitized and shortened version of the prompt for the filename
         filename = sanitizePrompt(prompt)
         generateImage(prompt, filename)
