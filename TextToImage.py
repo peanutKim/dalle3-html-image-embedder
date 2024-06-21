@@ -26,8 +26,8 @@ class TextToImage:
         
         soup = BeautifulSoup(html_content, 'html.parser')
 
-        # Extract comments
-        comments = soup.find_all(string=lambda text: isinstance(text, Comment))
+        # Extract comments and filter only those starting with "image:"
+        comments = soup.find_all(string=lambda text: isinstance(text, Comment) and text.strip().startswith('image:'))
 
         # Collect all image descriptions
         image_descs = [self.parseComment(comment) for comment in comments]
