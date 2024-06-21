@@ -72,9 +72,9 @@ def generateImages(prompts: list):
         filename = f"{sanitize_filename(prompt)}.png"
         generateImage(prompt, filename)
 
-if __name__ == "__main__":
-   prompts = [
-        "a cute cat with a hat",
-        "cute anime girl with a sword",
-   ]
-   generateImages(prompts)
+#if __name__ == "__main__":
+#   prompts = [
+#        "a cute cat with a hat",
+#        "cute anime girl with a sword",
+#   ]
+#   generateImages(prompts)
