@@ -59,6 +59,7 @@ def generateImage(prompt: str, image_name: str):
         with open(image_path, 'wb') as file:
             file.write(image_response.content)
 
+
 def generateImages(prompts: list):
     """
     Generates and saves images for a list of prompts with descriptive filenames.
