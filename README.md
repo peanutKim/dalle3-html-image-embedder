@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Embed Image
-        uses: peanutKim/dalle3-html-image-embedder@develop2
+        uses: peanutKim/dalle3-html-image-embedder@main
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
