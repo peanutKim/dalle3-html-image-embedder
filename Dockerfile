@@ -9,4 +9,6 @@ COPY TextToImage.py /TextToImage.py
 COPY apiAuth.py /apiAuth.py
 COPY main.py /main.py
 
+RUN chmod +x entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
