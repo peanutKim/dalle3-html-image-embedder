@@ -1,7 +1,7 @@
 FROM python:3.11
 
 RUN apt-get update && apt-get install -y git
-RUN pip install --upgrade --no-cache-dir beautifulsoup4 openai python-dotenv requests
+RUN pip install --upgrade --no-cache-dir beautifulsoup4 openai requests
 
 COPY entrypoint.sh /entrypoint.sh
 COPY imageGenerator.py /imageGenerator.py
