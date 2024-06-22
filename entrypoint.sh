@@ -7,5 +7,7 @@ git config --global user.email "action@github.com"
 git config --global user.name "GitHub Action"
 
 git config --global --add safe.directory /github/workspace
+chmod -R u+rwX,g+rwX,o+rwX .git
+
 python /main.py
 ls -la /github/workspace
