@@ -1,0 +1,6 @@
+name: "HTML-to-DALL-E Image Embedder"
+description: "Automatically generates and embeds images into HTML files using DALL-E 3 based on comments within the HTML."
+author: "peanutKim & Irosora"
+runs:
+  using: "docker"
+  image: "Dockerfile"
