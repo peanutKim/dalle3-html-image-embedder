@@ -50,7 +50,6 @@ def generateImage(prompt: str, image_name: str):
     )
     image_url = response.data[0].url
 
-    # Use the provided image_name for the file name
     github_workspace = os.getenv('GITHUB_WORKSPACE', os.path.dirname(__file__))
     image_path = os.path.join(github_workspace, 'images', image_name)
     
@@ -63,10 +62,6 @@ def generateImage(prompt: str, image_name: str):
     if image_response.status_code == 200:
         with open(image_path, 'wb') as file:
             file.write(image_response.content)
-            
-    # Add the image to git tracking and commit
-    subprocess.run(["git", "add", "images/"], check=True)
-    subprocess.run(["git", "commit", "-m", "Add generated images"], check=True)
 
     # List the contents of the images directory
     print("Listing the contents of the images directory:")
