@@ -55,8 +55,7 @@ def generateImage(prompt: str, image_name: str):
     
     # Ensure the images directory exists before saving
     os.makedirs(os.path.dirname(image_path), exist_ok=True)
-    print("creating image at: ", image_path)
-    print("prompt: ", prompt)
+
     # Download and save the image
     image_response = requests.get(image_url)
     if image_response.status_code == 200:
