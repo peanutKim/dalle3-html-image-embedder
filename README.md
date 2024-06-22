@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Embed Image
+      - name: dalle3-image-embedder
         uses: peanutKim/dalle3-html-image-embedder@main
 
       - name: Create Pull Request
