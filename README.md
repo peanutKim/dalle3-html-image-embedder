@@ -22,6 +22,8 @@ jobs:
 
       - name: dalle3-image-embedder
         uses: peanutKim/dalle3-html-image-embedder@main
+        env:
+          OPENAI_API_KEY: ${{ secrets.SK_KEY }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
