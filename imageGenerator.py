@@ -63,6 +63,10 @@ def generateImage(prompt: str, image_name: str):
     if image_response.status_code == 200:
         with open(image_path, 'wb') as file:
             file.write(image_response.content)
+            
+    # Add the image to git tracking and commit
+    subprocess.run(["git", "add", "images/"], check=True)
+    subprocess.run(["git", "commit", "-m", "Add generated images"], check=True)
 
     # List the contents of the images directory
     print("Listing the contents of the images directory:")
