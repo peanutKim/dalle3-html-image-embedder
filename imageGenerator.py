@@ -50,13 +50,15 @@ def generateImage(prompt: str, image_name: str):
     )
     image_url = response.data[0].url
 
-    # Use the provided image_name for the file name
-    image_path = os.path.join(os.path.dirname(__file__), 'images', image_name)
-    
-    # Ensure the images directory exists before saving
-    os.makedirs(os.path.dirname(image_path), exist_ok=True)
-    print("creating image at: ", image_path)
-    print("prompt: ", prompt)
+    print("Current Working Directory:", os.getcwd())
+    try:
+        image_path = os.path.join(os.path.dirname(__file__), 'images', image_name)
+        print("Attempting to create directory at:", os.path.dirname(image_path))
+        os.makedirs(os.path.dirname(image_path), exist_ok=True)
+        print("Directory ensured.")
+    except Exception as e:
+        print(f"Error creating directory: {e}")
+        
     # Download and save the image
     image_response = requests.get(image_url)
     if image_response.status_code == 200:
