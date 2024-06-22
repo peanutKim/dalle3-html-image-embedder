@@ -63,10 +63,6 @@ def generateImage(prompt: str, image_name: str):
         with open(image_path, 'wb') as file:
             file.write(image_response.content)
 
-    # List the contents of the images directory
-    print("Listing the contents of the images directory:")
-    subprocess.run(["ls", "-l", os.path.dirname(image_path)], check=True)
-
 
 def generateImages(prompts: list):
     """
