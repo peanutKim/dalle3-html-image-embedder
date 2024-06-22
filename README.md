@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: dalle3-image-embedder
-        uses: peanutKim/dalle3-html-image-embedder@main
+        uses: peanutKim/dalle3-html-image-embedder@v1.0.0
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_KEY }}
 
