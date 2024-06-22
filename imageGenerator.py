@@ -6,40 +6,37 @@ import re
 
 client = authGPT()
 
-
 def sanitizePrompt(prompt: str, max_length: int = 50) -> str:
     """
-    Sanitizes and shortens the prompt to be used as a filename, appending '.png' to the result.
+    Cleans up the prompt for use as a filename by removing invalid characters and limiting its length. Adds '.png' extension.
 
     Parameters:
-    - prompt (str): The prompt to sanitize.
-    - max_length (int): Maximum length of the filename before adding the extension.
+    - prompt (str): The input prompt.
+    - max_length (int): The maximum allowed length for the filename (excluding '.png').
 
     Returns:
-    - (str): A sanitized and shortened version of the prompt suitable for use as a filename, with '.png' appended.
+    - str: A clean, shortened filename ending with '.png'.
     """
-    # Remove or replace characters not allowed in filenames
+    # Eliminate invalid filename characters
     sanitized = re.sub(r'[<>:"/\\|?*]', '', prompt)
-    # Replace spaces with underscores
+    # Convert spaces to underscores
     sanitized = sanitized.replace(' ', '_')
-    # Shorten to the maximum length
-    if len(sanitized) > max_length - 4:  # Adjusting for the length of '.png'
+    # Truncate to max_length if necessary
+    if len(sanitized) > max_length - 4:  # Account for '.png'
         sanitized = sanitized[:max_length - 4]
-    # Append '.png' extension
+    # Append file extension
     sanitized += '.png'
     return sanitized
 
-
 def generateImage(prompt: str, image_name: str):
     """
-    Generates an image based on a given prompt and saves it with a specified image name.
+    Creates an image from a prompt and saves it with the given filename.
 
     Parameters:
-    - prompt (str): The prompt to generate the image from.
-    - image_name (str): The name of the file to save the image as, including its extension.
+    - prompt (str): The inspiration for the image.
+    - image_name (str): The filename for the saved image, including its extension.
 
-    The function saves the generated image in a directory named 'images' located in the same
-    directory as this script. If the 'images' directory does not exist, it is created.
+    Saves the image in an 'images' directory within the script's directory. Creates the directory if it doesn't exist.
     """
     response = client.images.generate(
         model="dall-e-3",
@@ -53,24 +50,23 @@ def generateImage(prompt: str, image_name: str):
     github_workspace = os.getenv('GITHUB_WORKSPACE', os.path.dirname(__file__))
     image_path = os.path.join(github_workspace, 'images', image_name)
     
-    # Ensure the images directory exists before saving
+    # Create 'images' directory if missing
     os.makedirs(os.path.dirname(image_path), exist_ok=True)
 
-    # Download and save the image
+    # Download the image and save it
     image_response = requests.get(image_url)
     if image_response.status_code == 200:
         with open(image_path, 'wb') as file:
             file.write(image_response.content)
 
-
 def generateImages(prompts: list):
     """
-    Generates and saves images for a list of prompts with descriptive filenames.
+    Processes a list of prompts to generate and save images with appropriate filenames.
 
     Parameters:
-    - prompts (list): A list of strings, where each string is a prompt to generate an image from.
+    - prompts (list): Prompts for image generation.
     """
     for prompt in prompts:
-        # Use a sanitized and shortened version of the prompt for the filename
+        # Filename from sanitized prompt
         filename = sanitizePrompt(prompt)
         generateImage(prompt, filename)
