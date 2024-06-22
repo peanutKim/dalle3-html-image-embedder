@@ -1,6 +1,6 @@
 # dalle3-html-image-embedder GitHub Action
 
-This action transform HTML comments into `<img>` elements with AI-generated images from DALL-E 3. The following is the syntax for the html comments:
+This action transforms HTML comments into `<img>` elements with AI-generated images from DALL-E 3. The following is the syntax for the html comments:
 
 ```html
 <!--image: your desired image prompt-->
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: dalle3-image-embedder
-        uses: peanutKim/dalle3-html-image-embedder@develop
+        uses: peanutKim/dalle3-html-image-embedder@main
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_KEY }}
 
