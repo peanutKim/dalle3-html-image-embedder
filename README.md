@@ -1,6 +1,6 @@
 # dalle3-html-image-embedder GitHub Action
 
-This action enables the automatic generation of AI-powered `<img>` elements from HTML comments. For instance, a comment in an HTML file will be transformed into an `<img>` element, created by DALL-E 3 based on the specified prompt:
+This action enables the automatic ai generation of `<img>` elements from HTML comments. For instance, a comment in an HTML file will be transformed into an `<img>` element, created by DALL-E 3 based on the specified prompt:
 
 ```html
 <!--image: studio ghibli styled plate of delicious food-->
